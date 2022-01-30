@@ -1,1 +1,66 @@
-<p>quicksort works!</p>
+<div class="body">
+  <h1>Quick Sort</h1>
+  <div class="content">
+    Algorytm sorotwania szybkiego jest uważany za najszybszy algorytm dla danych
+    losowych. Zasada jego działania opiera się o metodę dziel i zwyciężaj. Zbiór
+    danych zostaje podzielony na dwa podzbiory i każdy z nich jest sortowany
+    niezależnie od drugiego. Dla zadanej tablicy a[l..p] wybieramy element
+    v=a[l] i przeszukujemy resztę tablicy (tzn. a[l+1..p]) tak długo, aż nie
+    znajdziemy elementu większego niż a[l]. Następnie przeszukujemy tą tablicę
+    od strony prawej póki nie znajdziemy elementu nie większego niż a[l]. Gdy to
+    osiągniemy, zamieniamy miejscami te dwa elementy i zaczynamy cały proces od
+    początku. Algorytm działa tak długo, aż wskaźnik poruszający się w lewo i
+    wskaźnik poruszający się w prawo spotkają się. Należy wówczas zamienić
+    element v=a[l] z ostatnim elementem lewej części tablicy. Mimo, że w
+    najgorszym przypadku algorytm ma złożoność kwadratową, jest on bardzo często
+    stosowany. Powodem tego jest niska- liniowologarytmiczna, złożoność w
+    średnim przypadku.
+  </div>
+  <mat-card class="pseudocode">
+    <mat-card-header>
+      <mat-card-title>Code in JS</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <textarea class="code" readonly>
+&lt;script&gt; 
+function swap(arr, i, j) {
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;}
+ 
+function partition(arr, low, high) {
+    let pivot = arr[high];
+    let i = (low - 1);
+    for (let j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr, i, j);}}
+
+    swap(arr, i + 1, high);
+    return (i + 1);}
+ 
+function quickSort(arr, low, high) {
+    if (low < high) {
+        let pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);}}
+ 
+function printArray(arr, size) {
+    for (let i = 0; i < size; i++)
+        document.write(arr[i] + " ");
+    document.write("<br>");}
+
+let arr = [10, 7, 8, 9, 1, 5];
+let n = arr.length;
+quickSort(arr, 0, n - 1);
+document.write("Sorted array: <br>");
+printArray(arr, n);
+  &lt;/script&gt;</textarea
+      >
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>COPY</button>
+      <button mat-button>TRY IT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

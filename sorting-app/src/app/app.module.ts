@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +19,9 @@ import { CombsortComponent } from './combsort/combsort.component';
 import { PigeonholesortComponent } from './pigeonholesort/pigeonholesort.component';
 import { CyclesortComponent } from './cyclesort/cyclesort.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +38,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ShellsortComponent,
     CombsortComponent,
     PigeonholesortComponent,
-    CyclesortComponent
+    CyclesortComponent,
+    PageNotFoundComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    RouterModule.forRoot([
+      { path: 'bubble-sort', component: BubblesortComponent },
+      { path: 'insertion-sort', component: InsertionsortComponent },
+      { path: 'merge-sort', component: MergesortComponent },
+      { path: 'quick-sort', component: QuicksortComponent },
+      { path: '', redirectTo: '/bubble-sort', pathMatch: 'full' },
+      { path: '**', component: PageNotFoundComponent },
+    ]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
