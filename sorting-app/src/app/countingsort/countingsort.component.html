@@ -1,1 +1,62 @@
-<p>countingsort works!</p>
+<div class="body">
+  <h1>Counting Sort</h1>
+  <div class="content">
+    Sortowanie przez zliczanie ma jedną potężną zaletę i jedną równie potężną
+    wadę: Zaleta: działa w czasie liniowym (jest szybki) Wada: może sortować
+    wyłącznie liczby całkowite Obydwie te cechy wynikają ze sposobu sortowania.
+    Polega ono na liczeniu, ile razy dana liczba występuje w ciągu, który mamy
+    posortować. Następnie wystarczy utworzyć nowy ciąg, korzystając z danych
+    zebranych wcześniej. Np. mamy posortować ciąg: 3,6,3,2,7,1,7,1. Po zliczeniu
+    (w jednym kroku) operujemy danymi na temat liczności poszczególnych liczb:
+    Liczba 1 występuje 2 razy Liczba 2 występuje 1 raz Liczba 3 występuje 2 razy
+    Liczba 4 występuje 0 razy Liczba 5 występuje 0 razy Liczba 6 występuje 1 raz
+    Liczba 7 występuje 2 razy Na podstawie tych danych tworzymy ciąg:
+    1,1,2,3,3,6,7,7. Jest to ciąg wejściowy, ale posortowany. Należy zauważyć
+    trzy ważne rzeczy: Proces zliczania odbył się w jednym kroku Nie doszło do
+    ani jednej zamiany elementów Proces tworzenia tablicy wynikowej odbył się w
+    jednym kroku Algorytmy ten posiada jednak również wady: Do przechowywania
+    liczby wyrazów ciągu musimy użyć tablicy, o liczbie elementów równej
+    największemu elementowi ciągu Sortować można jedynie liczby całkowite
+  </div>
+  <mat-card class="pseudocode">
+    <mat-card-header>
+      <mat-card-title>Code in JS</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <textarea class="code" readonly>
+  &lt;script&gt; 
+  function sort(arr) {
+    var n = arr.length;
+    var output = Array.from({length: n}, (_, i) => 0);
+    var count = Array.from({length: 256}, (_, i) => 0);
+  
+    for (var i = 0; i < n; ++i)
+        ++count[arr[i].charCodeAt(0)];
+ 
+    for (var i = 1; i <= 255; ++i)
+        count[i] += count[i - 1];
+  
+    for (var i = n - 1; i >= 0; i--) {
+        output[count[arr[i].charCodeAt(0)] - 1] = arr[i];
+        --count[arr[i].charCodeAt(0)];}
+ 
+    for (var i = 0; i < n; ++i)
+        arr[i] = output[i];
+     return arr;}
+
+    var arr = [ 'g', 'e', 'e', 'k', 's', 'f', 'o',
+                   'r', 'g', 'e', 'e', 'k', 's' ];
+  
+    arr = sort(arr);
+    document.write("Sorted character array is ");
+    for (var i = 0; i < arr.length; ++i)
+        document.write(arr[i]);
+    &lt;/script&gt;</textarea
+      >
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>COPY</button>
+      <button mat-button>TRY IT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
