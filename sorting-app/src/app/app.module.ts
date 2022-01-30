@@ -52,6 +52,7 @@ import { NavigationComponent } from './navigation/navigation.component';
       { path: 'bubble-sort', component: BubblesortComponent },
       { path: 'heap-sort', component: HeapsortComponent },
       { path: 'bucket-sort', component: BucketsortComponent },
+      { path: 'pigeonhole-sort', component: PigeonholesortComponent },
       { path: 'shell-sort', component: ShellsortComponent },
       { path: 'radix-sort', component: RadixsortComponent },
       { path: 'counting-sort', component: CountingsortComponent },
