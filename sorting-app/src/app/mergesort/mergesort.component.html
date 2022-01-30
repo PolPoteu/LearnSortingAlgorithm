@@ -1,1 +1,103 @@
-<p>mergesort works!</p>
+<div class="body">
+  <h1>Merge Sort</h1>
+  <div class="content">
+    Sortowanie przez scalanie (podobnie jak algorytm QuickSort, jest algorytmem
+    typu "dziel i zwyciężaj". Jednak w odróżnieniu od QuickSort, algorytm ten w
+    każdym przypadku osiąga złozoność T(n) = n*log(n). Niestety algorytm
+    MergeSort posiada większą złożoność pamięciową, potrzebuje do swojego
+    działania dodatkowej, pomocniczej struktury danych. Ideą działania algorytmu
+    jest dzielenie zbioru danych na mniejsze zbiory, aż do uzyskania n zbiorów
+    jednoelementowych, które same z siebie są posortowane :), następnie zbiory
+    te są łączone w coraz większe zbiory posortowane, aż do uzyskania jednego,
+    posortowanego zbioru n-elementowego. Etap dzielenia nie jest skomplikowany,
+    dzielenie następuje bez sprawdzania jakichkolwiek warunków. Dzięki temu, w
+    przeciwieństwie do algorytmu QuickSort, następuje pełne rozwinięcie
+    wszystkich gałęzi drzewa. Z kolei łączenie zbiorów posortowanych wymaga
+    odpowiedniego wybierania poszczególnych elementów z łączonych zbiorów z
+    uwzględnieniem faktu, że wielkość zbioru nie musi być równa (parzysta i
+    nieparzysta ilość elementów), oraz tego, iż wybieranie elementów z
+    poszczególnych zbiorów nie musi następować naprzemiennie, przez co jeden
+    zbiór może osiągąć swój koniec wcześniej niż drugi. Robi sie to w
+    następujący sposób. Kopiujemy zawartość zbioru głównego do struktury
+    pomocniczej. Następnie, operując wyłącznie na kopii, ustawiamy wskaźniki na
+    początki kolejnych zbiorów i porównujemy wskazywane wartości. Mniejszą
+    wartość wpisujemy do zbioru głównego i przesuwamy odpowiedni wskaźnik o 1 i
+    czynności powtarzamy, aż do momentu, gdy jeden ze wskaźników osiągnie koniec
+    zbioru. Wówczam mamy do rozpatrzenia dwa przypadki, gdy zbiór 1 osiągnął
+    koniec i gdy zbiór 2 osiągnął koniec. W przypadku pierwszym nie będzie
+    problemu, elementy w zbiorze głównym są już posortowane i ułożone na
+    właściwych miejscach. W przypadku drugim trzeba skopiować pozostałe elementy
+    zbioru pierwszego pokolei na koniec. Po zakończeniu wszystkich operacji
+    otrzmujemy posortowany zbiór główny.
+  </div>
+  <mat-card class="pseudocode">
+    <mat-card-header>
+      <mat-card-title>Code in JS</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <textarea class="code" readonly>
+  &lt;script&gt; 
+  function merge(arr, l, m, r) {
+    var n1 = m - l + 1;
+    var n2 = r - m;
+    var L = new Array(n1); 
+    var R = new Array(n2);
+
+    for (var i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (var j = 0; j < n2; j++)
+        R[j] = arr[m + 1 + j];
+
+    var i = 0;
+    var j = 0;
+    var k = l;
+  
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;}
+        else {
+            arr[k] = R[j];
+            j++;}
+        k++;}
+  
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;}
+  
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;}
+}
+  
+function mergeSort(arr,l, r){
+    if(l>=r){
+        return;//returns recursively}
+    var m =l+ parseInt((r-l)/2);
+    mergeSort(arr,l,m);
+    mergeSort(arr,m+1,r);
+    merge(arr,l,m,r);}
+  
+function printArray( A, size) {
+    for (var i = 0; i < size; i++)
+       document.write(  A[i] + " ");}
+  
+  
+var arr = [ 12, 11, 13, 5, 6, 7 ];
+    var arr_size = arr.length;
+    document.write(  "Given array is <br>");
+    printArray(arr, arr_size);
+    mergeSort(arr, 0, arr_size - 1);
+    document.write( "<br>Sorted array is <br>");
+    printArray(arr, arr_size);
+    &lt;/script&gt;</textarea
+      >
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>COPY</button>
+      <button mat-button>TRY IT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

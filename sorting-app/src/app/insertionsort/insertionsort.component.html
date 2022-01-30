@@ -1,1 +1,66 @@
-<p>insertionsort works!</p>
+<div class="body">
+  <h1>Insertion Sort</h1>
+  <div class="content">
+    Zasada działania tego algorytmu jest często porównywana do porządkowania
+    kart w wachlarz podczas gry. Każdą kartę wstawiamy w odpowiednie miejsce,
+    tzn. po młodszej, ale przed starszą. Podobnie jest z liczbami. Pierwszy
+    element pozostaje na swoim miejscu. Następnie bierzemy drugi i sprawdzamy, w
+    jakiej relacji jest on z pierwszym. Jeśli jest niemniejszy, to zostaje na
+    drugim miejscu, w przeciwnym wypadku wędruje na pierwsze miejsce. Dalej
+    sprawdzamy trzeci element (porównujemy go do dwóch pierwszych i wstawiamy w
+    odpowiednie miejsce), czwarty (porównujemy z trzema pierwszymi), piąty itd.
+    Idea działania algorytmu opiera się na podziale ciągu na dwie części:
+    pierwsza jest posortowana, druga jeszcze nie. Wybieramy kolejną liczbę z
+    drugiej części i wstawiamy ją do pierwszej. Ponieważ jest ona posortowana,
+    to szukamy dla naszej liczby takiego miejsca, aby liczba na lewo była
+    niewiększa a liczba na prawo niemniejsza. Wstawienie liczby do posortowanej
+    tablicy wymaga więc czasu O(n). Wynika z tego złożoność algorytmy: O(n2)
+  </div>
+  <mat-card class="pseudocode">
+    <mat-card-header>
+      <mat-card-title>Code in JS</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <textarea class="code" readonly>
+&lt;script&gt; 
+// Function to sort an array using insertion sort
+function insertionSort(arr, n) { 
+    let i, key, j; 
+    for (i = 1; i < n; i++) { 
+        key = arr[i]; 
+        j = i - 1; 
+   
+        /* Move elements of arr[0..i-1], that are 
+        greater than key, to one position ahead 
+        of their current position */
+        while (j >= 0 && arr[j] > key) { 
+            arr[j + 1] = arr[j]; 
+            j = j - 1; 
+        } 
+        arr[j + 1] = key; 
+    } 
+} 
+   
+// A utility function to print an array of size n 
+function printArray(arr, n) { 
+    let i; 
+    for (i = 0; i < n; i++) 
+        document.write(arr[i] + " "); 
+    document.write("<br>");
+} 
+   
+// Driver code
+    let arr = [12, 11, 13, 5, 6 ]; 
+    let n = arr.length; 
+   
+    insertionSort(arr, n); 
+    printArray(arr, n);
+  &lt;/script&gt;</textarea
+      >
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>COPY</button>
+      <button mat-button>TRY IT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
