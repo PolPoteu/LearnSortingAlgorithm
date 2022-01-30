@@ -50,6 +50,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     MatCardModule,
     RouterModule.forRoot([
       { path: 'bubble-sort', component: BubblesortComponent },
+      { path: 'heap-sort', component: HeapsortComponent },
       { path: 'insertion-sort', component: InsertionsortComponent },
       { path: 'merge-sort', component: MergesortComponent },
       { path: 'quick-sort', component: QuicksortComponent },
