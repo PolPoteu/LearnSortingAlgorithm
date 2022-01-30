@@ -1,1 +1,60 @@
-<p>shellsort works!</p>
+<div class="body">
+  <h1>Shell Sort</h1>
+  <div class="content">
+    Sortowanie Shella polega na tym, iż sortowany zbiór dzielimy na podzbiory,
+    których elementy są odległe od siebie w sortowanym zbiorze o pewien odstęp
+    h. Każdy z tych podzbiorów sortujemy algorytmem przez wstawianie. Następnie
+    odstęp zmniejszamy. Powoduje to powstanie nowych podzbiorów (będzie ich już
+    mniej). Sortowanie powtarzamy i znów zmniejszamy odstęp, aż osiągnie on
+    wartość 1. Wtedy sortujemy już normalnie za pomocą Instertion Sort. Jednakże
+    z uwagi na wcześniejsze obiegi sortujące mamy ułatwione zadanie, ponieważ
+    zbiór został w dużym stopniu uporządkowany. Dzięki początkowym dużym
+    odstępom elementy były przesuwane w zbiorze bardziej efektywnie - na duże
+    odległości. W wyniku otrzymujemy najlepszy pod względem szybkości czasu
+    wykonania algorytm sortujący w klasie O(n2). Algorytm ten nosi również nazwę
+    algorytmu sortowania przez wstawianie z malejącym odstępem (ang. Diminishing
+    Increment Sort). Efektywność algorytmu sortowania metodą Shella zależy w
+    dużym stopniu od ciągu przyjętych odstępów. Pierwotnie Shell proponował
+    pierwszy odstęp równy połowie liczby elementów w sortowanym zbiorze. Kolejne
+    odstępy otrzymujemy dzieląc odstęp przez 2 (dzielenie całkowitoliczbowe).
+  </div>
+  <mat-card class="pseudocode">
+    <mat-card-header>
+      <mat-card-title>Code in JS</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <textarea class="code" readonly>
+  &lt;script&gt; 
+  function printArray(arr) {
+    let n = arr.length;
+        for (let i = 0; i < n; ++i)
+            document.write(arr[i] + " ");
+        document.write("<br>");}
+ 
+function sort(arr) {
+    let n = arr.length;
+        for (let gap = Math.floor(n/2); gap > 0; gap = Math.floor(gap/2)){
+            for (let i = gap; i < n; i += 1){
+                let temp = arr[i];
+                let j;
+                for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+                    arr[j] = arr[j - gap];
+                arr[j] = temp;}}
+        return arr;}
+ 
+let arr = [12, 34, 54, 2, 3];
+document.write("Array before sorting<br>");
+printArray(arr);
+ 
+arr = sort(arr);
+document.write("Array after sorting<br>");
+printArray(arr);
+    &lt;/script&gt;</textarea
+      >
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>COPY</button>
+      <button mat-button>TRY IT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
