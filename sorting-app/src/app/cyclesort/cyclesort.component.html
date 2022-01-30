@@ -1,1 +1,72 @@
-<p>cyclesort works!</p>
+<div class="body">
+  <h1>Cycle Sort</h1>
+  <div class="content">
+    Cycle Sort to algorytm sortowania, który wykorzystuje sortowanie
+    porównawcze, które jest teoretycznie optymalne pod względem całkowitej
+    liczby zapisów do oryginalnej tablicy, w przeciwieństwie do innych
+    algorytmów sortowania w miejscu. Sortowanie cykliczne jest niestabilnym
+    algorytmem sortującym. Opiera się na idei permutacji, w której permutacje są
+    podzielone na cykle, które indywidualnie obracają się i zwracają posortowane
+    dane wyjściowe.
+  </div>
+  <mat-card class="pseudocode">
+    <mat-card-header>
+      <mat-card-title>Code in JS</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <textarea class="code" readonly>
+  &lt;script&gt; 
+  function cycleSort(arr, n) {
+        let writes = 0;
+
+        for (let cycle_start = 0; cycle_start <= n - 2; cycle_start++) {
+
+            let item = arr[cycle_start];
+            let pos = cycle_start;
+            for (let i = cycle_start + 1; i < n; i++)
+                if (arr[i] < item)
+                    pos++;
+
+            if (pos == cycle_start)
+                continue;
+
+            while (item == arr[pos])
+                pos += 1;
+
+            if (pos != cycle_start) {
+                let temp = item;
+                item = arr[pos];
+                arr[pos] = temp;
+                writes++;}
+
+            while (pos != cycle_start) {
+                pos = cycle_start;
+
+                for (let i = cycle_start + 1; i < n; i++)
+                    if (arr[i] < item)
+                        pos += 1;
+
+                while (item == arr[pos])
+                    pos += 1;
+   
+                if (item != arr[pos]) {
+                    let temp = item;
+                    item = arr[pos];
+                    arr[pos] = temp;
+                    writes++;}}}} 
+ 
+    let arr = [ 1, 8, 3, 9, 10, 10, 2, 4 ];
+    let n = arr.length;
+    cycleSort(arr, n);
+    document.write("After sort : " + "<br/>");
+    for (let i = 0; i < n; i++)
+        document.write(arr[i] + " ");
+    &lt;/script&gt;</textarea
+      >
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>COPY</button>
+      <button mat-button>TRY IT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
