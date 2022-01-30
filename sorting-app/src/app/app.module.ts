@@ -51,6 +51,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     RouterModule.forRoot([
       { path: 'bubble-sort', component: BubblesortComponent },
       { path: 'heap-sort', component: HeapsortComponent },
+      { path: 'selection-sort', component: SelectionsortComponent },
       { path: 'insertion-sort', component: InsertionsortComponent },
       { path: 'merge-sort', component: MergesortComponent },
       { path: 'quick-sort', component: QuicksortComponent },
