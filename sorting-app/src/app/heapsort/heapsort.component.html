@@ -1,1 +1,91 @@
-<p>heapsort works!</p>
+<div class="body">
+  <h1>Heap Sort</h1>
+  <div class="content">
+    Jest to metoda bardziej skomplikowana niż sortowanie bąbelkowe czy przez
+    wstawianie, ale za to działa w krótszym czasie. Zrozumienie algorytmu
+    HeapSort wymaga zaznajomienia się z pojęciem Kopca/Stogu. Budowa drzewa
+    binarnego z elementów tablicy, którą mamy posortować wygląda następująco:
+    Zaczynamy od pierwszego elementu tablicy, który będzie korzeniem Każdy
+    następny i-ty element tablicy będzie miał co najwyżej dwa następniki o
+    wyrazach odpowiednio: 2*i oraz 2*i+1 Łatwo stwierdzić, że dla każdego i-tego
+    elementu (oprócz korzenia) numer elementu w tablicy, będącego jego
+    poprzednikiem określa się wzorem: i div 2 Po zbudowaniu drzewa należy
+    wykonać odpowiednie instrukcje, które zapewnią mu warunek kopca. Należy więc
+    sprawdzać (poczynając od poprzednika ostatniego liścia schodząc w górę do
+    korzenia) czy poprzednik jest mniejszy od następnika i jeżeli tak jest to
+    zamienić je miejscami. Po wykonaniu tych czynności drzewo binarne zamieniło
+    się w stóg. Z jego własności wynika, że w korzeniu znajduje się największy
+    element. Korzystając z tego faktu możemy go pobrać na koniec tablicy
+    wynikowej a na jego miejsce wstawić ostatni liść. Po pobraniu korzenia
+    tablica źródłowa zmniejszyła się o 1 element a porządek kopca został
+    zaburzony (nie wiadomo, czy ostatni liść będący teraz korzeniem jest
+    rzeczywiście największym elementem). By przywrócić warunek stogu należy
+    ponownie uporządkować jego elementy, tym razem jednak zaczynając od korzenia
+    (ponieważ to on jest nowym elementem). Po przywróceniu porządku w kopcu
+    możemy znów pobrać korzeń i wstawić go do tablicy wynikowej (tym razem na
+    drugie miejsce od końca), wstawić na jego miejsce liść i zmniejszyć rozmiar
+    tablicy źródłowej o 1. Tu pętla się zamyka. Wykonujemy te czynności aż do
+    ostatniego korzenia. Po całkowitym wyczyszczeniu kopca w tablicy wynikowej
+    będziemy mieli posortowane elementy z tablicy wejściowej. Aby zlikwidować
+    drugą tablicę (co zwiększa złożoność pamięciową algorytmy) wystarczy w
+    kolejnych krokach odkładać korzenie w tej samej tablicy, od końca
+    zmniejszając jednocześnie zmienną, która odpowiada za liczbę elementów
+    kopca. Po zmniejszeniu tej liczby algorytm nie będzie "widział" tylnej,
+    posortowanej już części tablicy. Złożoność tego algorytmu to O(nlogn).
+  </div>
+  <mat-card class="pseudocode">
+    <mat-card-header>
+      <mat-card-title>Code in JS</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <textarea class="code" readonly>
+  &lt;script&gt; 
+  function sort( arr){
+        var n = arr.length;
+        for (var i = Math.floor(n / 2) - 1; i >= 0; i--)
+            heapify(arr, n, i);
+ 
+        for (var i = n - 1; i > 0; i--) {
+            var temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+            heapify(arr, i, 0);}}
+ 
+    function heapify(arr, n, i) {
+        var largest = i;
+        var l = 2 * i + 1;
+        var r = 2 * i + 2;
+ 
+        if (l < n && arr[l] > arr[largest])
+            largest = l;
+ 
+        if (r < n && arr[r] > arr[largest])
+            largest = r;
+ 
+        if (largest != i) {
+            var swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+            heapify(arr, n, largest);}}
+ 
+    function printArray(arr) {
+        var n = arr.length;
+        for (var i = 0; i < n; ++i)
+            document.write(arr[i] + " ");}
+ 
+    var arr = [ 5, 12, 11, 13, 4, 6, 7 ];
+    var n = arr.length;
+ 
+    sort(arr);
+ 
+    document.write( "Sorted array is <br>");
+    printArray(arr, n);
+    &lt;/script&gt;</textarea
+      >
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>COPY</button>
+      <button mat-button>TRY IT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

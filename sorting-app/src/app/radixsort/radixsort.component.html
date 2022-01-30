@@ -1,1 +1,72 @@
-<p>radixsort works!</p>
+<div class="body">
+  <h1>Radix Sort</h1>
+  <div class="content">
+    The lower bound for Comparison based sorting algorithm (Merge Sort, Heap
+    Sort, Quick-Sort .. etc) is Ω(nLogn), i.e., they cannot do better than
+    nLogn. Counting sort is a linear time sorting algorithm that sort in O(n+k)
+    time when elements are in the range from 1 to k. What if the elements are in
+    the range from 1 to n2? We can’t use counting sort because counting sort
+    will take O(n2) which is worse than comparison-based sorting algorithms. Can
+    we sort such an array in linear time? Radix Sort is the answer. The idea of
+    Radix Sort is to do digit by digit sort starting from least significant
+    digit to most significant digit. Radix sort uses counting sort as a
+    subroutine to sort.
+  </div>
+  <mat-card class="pseudocode">
+    <mat-card-header>
+      <mat-card-title>Code in JS</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <textarea class="code" readonly>
+    &lt;script&gt; 
+    function getMax(arr,n){
+    let mx = arr[0];
+        for (let i = 1; i &lt; n; i++)
+            if (arr[i] > mx)
+                mx = arr[i];
+        return mx;}
+
+function countSort(arr,n,exp) {
+    let output = new Array(n);
+    let i;
+    let count = new Array(10);
+        for(let i=0;i&lt;10;i++)
+            count[i]=0;
+
+        for (i = 0; i &lt; n; i++)
+            count[Math.floor(arr[i] / exp) % 10]++;
+  
+
+        for (i = 1; i &lt; 10; i++)
+            count[i] += count[i - 1];
+  
+        for (i = n - 1; i >= 0; i--) {
+            output[count[Math.floor(arr[i] / exp) % 10] - 1] = arr[i];
+            count[Math.floor(arr[i] / exp) % 10]--;}
+  
+        for (i = 0; i &lt; n; i++)
+            arr[i] = output[i];}
+ 
+function radixsort(arr,n) {
+        let m = getMax(arr, n);
+
+        for (let exp = 1; Math.floor(m / exp) > 0; exp *= 10)
+            countSort(arr, n, exp);}
+ 
+function print(arr,n) {
+    for (let i = 0; i < n; i++)
+            document.write(arr[i] + " ");}
+ 
+let arr=[170, 45, 75, 90, 802, 24, 2, 66];
+let n = arr.length;
+radixsort(arr, n);
+print(arr, n);
+      &lt;/script&gt;</textarea
+      >
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>COPY</button>
+      <button mat-button>TRY IT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
