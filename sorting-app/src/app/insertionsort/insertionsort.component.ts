@@ -3,13 +3,43 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-insertionsort',
   templateUrl: './insertionsort.component.html',
-  styleUrls: ['./insertionsort.component.scss']
+  styleUrls: ['./insertionsort.component.scss'],
 })
 export class InsertionsortComponent implements OnInit {
+  value = `<script>
+function insertionSort(arr, n)
+{
+	let i, key, j;
+	for (i = 1; i < n; i++)
+	{
+		key = arr[i];
+		j = i - 1;
 
-  constructor() { }
+		while (j >= 0 && arr[j] > key)
+		{
+			arr[j + 1] = arr[j];
+			j = j - 1;
+		}
+		arr[j + 1] = key;
+	}
+}
 
-  ngOnInit(): void {
-  }
+function printArray(arr, n)
+{
+	let i;
+	for (i = 0; i < n; i++)
+		document.write(arr[i] + " ");
+	document.write("<br>");
+}
 
+	let arr = [12, 11, 13, 5, 6 ];
+	let n = arr.length;
+
+	insertionSort(arr, n);
+	printArray(arr, n);
+
+</script>
+`;
+
+  ngOnInit(): void {}
 }
