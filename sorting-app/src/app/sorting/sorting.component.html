@@ -1,0 +1,7 @@
+<mat-label>Liczba Minimalna</mat-label>
+  <input matInput type="text" [(ngModel)]="ran_min">
+<mat-label>Liczba Maksymalna</mat-label>
+  <input matInput type="text" [(ngModel)]="ran_max">
+<mat-label>Wielkosc Tablicy</mat-label>
+  <input matInput type="text" [(ngModel)]="arr_length">
+<button mat-flat-button (click)="sortRandomArray(ran_min, ran_max, arr_length)">Sort Array</button>

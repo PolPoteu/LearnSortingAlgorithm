@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
 
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { FormsModule } from '@angular/forms';
@@ -26,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { SortingComponent } from './sorting/sorting.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     CyclesortComponent,
     PageNotFoundComponent,
     NavigationComponent,
+    SortingComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
+    MatInputModule,
     ClipboardModule,
     FormsModule,
     RouterModule.forRoot([
